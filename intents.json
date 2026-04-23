@@ -1,0 +1,184 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["hello", "hi", "hey", "good morning", "good evening", "what's up", "greetings", "hi there", "hello there"],
+      "responses": ["Hello! How can I help you today?", "Hi there! Nice to see you!", "Hey! What can I do for you?", "Greetings! How may I assist you?", "Hello! I'm here to help. What would you like to know?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "see you", "later", "farewell", "take care", "good night", "see you later", "catch you later"],
+      "responses": ["Goodbye! Have a wonderful day!", "See you soon! Take care!", "Farewell! It was nice chatting with you!", "Goodbye! Come back anytime!", "Take care! Don't hesitate to return if you have more questions!"]
+    },
+    {
+      "tag": "help",
+      "patterns": ["help", "can you help", "what can you do", "assist", "support", "need assistance", "how do you work", "what are your capabilities"],
+      "responses": ["I can help you with:\n• Answering questions on various topics\n• Providing information about technology, science, history\n• Having conversations\n• Explaining concepts\n\nJust ask me anything!"]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thank", "thanks", "appreciate", "thank you", "many thanks", "thx", "grateful", "appreciated"],
+      "responses": ["You're welcome!", "Happy to help!", "No problem at all!", "My pleasure!", "Glad I could assist!"]
+    },
+    {
+      "tag": "name",
+      "patterns": ["what is your name", "who are you", "your name", "what should I call you", "who are you", "what are you called"],
+      "responses": ["I'm an AI chatbot powered by Natural Language Processing.", "You can call me ChatBot! I'm an AI assistant designed to understand and respond to your queries.", "I'm your AI assistant, here to help with conversations and answer questions!"]
+    },
+    {
+      "tag": "joke",
+      "patterns": ["tell me a joke", "joke", "funny", "make me laugh", "humor", "comedy", "funny story"],
+      "responses": ["Why do programmers prefer dark mode? Because light attracts bugs! 😄", "What do you call a fake noodle? An impasta! 🍝", "Why did the AI go to art school? To improve its neural networks! 🎨", "Why do Java developers wear glasses? Because they can't C#! 😎", "A SQL query walks into a bar, walks up to two tables and asks... 'Can I join you?'"]
+    },
+    {
+      "tag": "about_ai",
+      "patterns": ["what is ai", "artificial intelligence", "how does ai work", "explain ai", "tell me about ai", "ai explained"],
+      "responses": ["Artificial Intelligence (AI) is the simulation of human intelligence in machines. It enables computers to learn from experience, adjust to new inputs, and perform human-like tasks like reasoning, learning, and problem-solving.", "AI refers to systems that can learn, reason, and solve problems. My NLP capabilities allow me to understand and process human language!", "AI is transforming our world - from self-driving cars to smart assistants. It's about creating machines that can think and learn like humans."]
+    },
+    {
+      "tag": "about_nlp",
+      "patterns": ["what is nlp", "natural language processing", "how do you understand text", "explain nlp", "what is natural language"],
+      "responses": ["Natural Language Processing (NLP) is a branch of AI that helps computers understand, interpret, and manipulate human language. I use it to recognize your intents and generate appropriate responses!", "NLP allows me to break down your text, understand the meaning, and determine what you're asking for. It's the technology behind my language understanding!", "NLP combines linguistics, computer science, and AI to help machines understand human language. It's what allows me to interpret your messages!"]
+    },
+    {
+      "tag": "python",
+      "patterns": ["what is python", "python programming", "learn python", "python language", "python tutorial"],
+      "responses": ["Python is a high-level, interpreted programming language known for its simplicity and readability. It's widely used in:\n• Web Development (Django, Flask)\n• Data Science & AI (TensorFlow, PyTorch)\n• Automation & Scripting\n• Scientific Computing", "Python is one of the most popular programming languages today! It's beginner-friendly and has a vast ecosystem of libraries for AI, data science, web development, and more."]
+    },
+    {
+      "tag": "machine_learning",
+      "patterns": ["what is machine learning", "ml explained", "how does machine learning work", "tell me about ml", "machine learning basics"],
+      "responses": ["Machine Learning (ML) is a subset of AI that enables systems to learn from data without being explicitly programmed. It uses algorithms to identify patterns and make decisions.\n\nTypes:\n• Supervised Learning\n• Unsupervised Learning\n• Reinforcement Learning", "Machine Learning is how computers learn from experience! Instead of following explicit instructions, ML algorithms improve through training on data. It's used in recommendations, predictions, and more!"]
+    },
+    {
+      "tag": "deep_learning",
+      "patterns": ["what is deep learning", "deep neural network", "explain deep learning", "dl vs ml", "neural networks"],
+      "responses": ["Deep Learning is a subset of machine learning using artificial neural networks with multiple layers (hence 'deep'). It excels at processing unstructured data like images, text, and audio.\n\nKey Applications:\n• Image Recognition\n• Natural Language Processing\n• Speech Recognition\n• Autonomous Vehicles", "Deep Learning mimics the human brain's neural networks! It uses layers of interconnected nodes to learn complex patterns. It's behind facial recognition, language translation, and AI assistants!"]
+    },
+    {
+      "tag": "web_development",
+      "patterns": ["what is web development", "how to build a website", "web dev explained", "frontend backend", "full stack"],
+      "responses": ["Web Development is creating websites and web applications. It has two main areas:\n\n• Frontend (Client-side): HTML, CSS, JavaScript, React, Vue\n• Backend (Server-side): Node.js, Python, PHP, Java\n• Database: MySQL, MongoDB, PostgreSQL", "Web development involves building websites and web apps! It includes designing user interfaces, writing server logic, and managing databases."]
+    },
+    {
+      "tag": "cloud_computing",
+      "patterns": ["what is cloud computing", "cloud explained", "aws azure google cloud", "what is cloud", "cloud services"],
+      "responses": ["Cloud Computing is delivering computing services (servers, storage, databases, software) over the internet. Major providers:\n\n• AWS (Amazon Web Services)\n• Microsoft Azure\n• Google Cloud Platform\n\nBenefits: Scalability, Cost-effectiveness, Accessibility", "Cloud computing means using remote servers to store, manage, and process data instead of local computers. It's like renting computing power!"]
+    },
+    {
+      "tag": "blockchain",
+      "patterns": ["what is blockchain", "blockchain explained", "how does blockchain work", "crypto explained", "bitcoin blockchain"],
+      "responses": ["Blockchain is a decentralized, distributed digital ledger that records transactions across many computers. Key features:\n\n• Decentralized (no central authority)\n• Immutable (cannot be altered)\n• Transparent\n• Secure\n\nUsed in: Cryptocurrencies, Supply Chain, Smart Contracts", "Blockchain is like a digital notebook that everyone can see but no one can erase! It's the technology behind Bitcoin and many other cryptocurrencies."]
+    },
+    {
+      "tag": "cybersecurity",
+      "patterns": ["what is cybersecurity", "cyber security explained", "how to stay safe online", "protect from hackers", "security tips"],
+      "responses": ["Cybersecurity protects computers, networks, and data from unauthorized access. Key areas:\n\n• Network Security\n• Application Security\n• Data Security\n• Identity Management\n\nCommon threats: Malware, Phishing, Ransomware", "Cybersecurity is about protecting digital systems from threats! It involves firewalls, encryption, secure passwords, and being aware of phishing attempts."]
+    },
+    {
+      "tag": "data_science",
+      "patterns": ["what is data science", "data scientist explained", "data analysis", "big data", "data analytics"],
+      "responses": ["Data Science combines statistics, programming, and domain knowledge to extract insights from data. Key skills:\n\n• Python/R programming\n• Statistics & Probability\n• Machine Learning\n• Data Visualization\n• SQL & Databases", "Data Science is about extracting knowledge from data! Data scientists use programming and statistics to uncover patterns and make data-driven decisions."]
+    },
+    {
+      "tag": "robotics",
+      "patterns": ["what is robotics", "robots explained", "how do robots work", "robotics explained", "types of robots"],
+      "responses": ["Robotics combines engineering, computer science, and AI to create machines that can perform tasks autonomously. Types:\n\n• Industrial Robots\n• Service Robots\n• Medical Robots\n• Humanoid Robots\n• Autonomous Vehicles", "Robotics is about creating machines that can perform tasks automatically! From assembly lines to surgical robots, they're transforming industries."]
+    },
+    {
+      "tag": "iot",
+      "patterns": ["what is iot", "internet of things", "iot explained", "smart devices", "connected devices"],
+      "responses": ["Internet of Things (IoT) connects everyday devices to the internet, allowing them to collect and share data. Examples:\n\n• Smart Home devices\n• Wearable fitness trackers\n• Smart thermostats\n• Industrial sensors\n• Connected cars", "IoT is about making everyday objects smart! Your fridge, thermostat, or watch can now connect to the internet and communicate with other devices."]
+    },
+    {
+      "tag": "virtual_reality",
+      "patterns": ["what is vr", "virtual reality explained", "ar vs vr", "augmented reality", "metaverse"],
+      "responses": ["Virtual Reality (VR) creates immersive digital environments. Augmented Reality (AR) overlays digital content on the real world.\n\nApplications:\n• Gaming & Entertainment\n• Education & Training\n• Healthcare\n• Architecture\n• Military Training", "VR/AR are changing how we experience digital content! VR creates entirely new worlds, while AR adds digital elements to our real environment."]
+    },
+    {
+      "tag": "quantum_computing",
+      "patterns": ["what is quantum computing", "quantum computer explained", "qubits", "quantum explained", "future of computing"],
+      "responses": ["Quantum Computing uses quantum mechanics (superposition, entanglement) to process information. Unlike classical bits (0 or 1), quantum bits (qubits) can exist in multiple states simultaneously.\n\nPotential: Drug discovery, Cryptography, Optimization", "Quantum computing is the next frontier! It uses quantum physics to process information in ways impossible for regular computers. It could revolutionize medicine, cryptography, and AI."]
+    },
+    {
+      "tag": "history_computers",
+      "patterns": ["history of computers", "first computer", "who invented computer", "computer evolution", "computing history"],
+      "responses": ["Computer History Highlights:\n\n• 1843: Ada Lovelace writes first algorithm\n• 1945: ENIAC - first electronic computer\n• 1970s: Personal computers emerge\n• 1984: Apple Macintosh launches\n• 1990s: World Wide Web invented\n• 2000s: Mobile computing boom\n• 2020s: AI revolution", "The journey of computers is fascinating! From room-sized machines to devices in our pockets, computing has transformed dramatically over decades."]
+    },
+    {
+      "tag": "programming_languages",
+      "patterns": ["best programming languages", "which language to learn", "programming languages comparison", "java vs python", "javascript uses"],
+      "responses": ["Popular Programming Languages:\n\n• Python: AI, Data Science, Web Dev\n• JavaScript: Web Development, Frontend/Backend\n• Java: Enterprise Apps, Android\n• C++: Games, Systems Programming\n• Go: Cloud Services, DevOps\n• Rust: Systems Programming, Security", "Each programming language has its strengths! Python is great for AI, JavaScript for web, C++ for performance. Choose based on your goals!"]
+    },
+    {
+      "tag": "software_engineering",
+      "patterns": ["what is software engineering", "how to become software engineer", "software dev process", "sdlc explained", "agile methodology"],
+      "responses": ["Software Engineering applies engineering principles to software development. Key phases:\n\n1. Requirements Analysis\n2. Design\n3. Implementation\n4. Testing\n5. Deployment\n6. Maintenance\n\nMethodologies: Agile, Scrum, Waterfall", "Software engineering is about building reliable, maintainable software! It involves planning, designing, coding, testing, and maintaining complex systems."]
+    },
+    {
+      "tag": "databases",
+      "patterns": ["what is database", "sql vs nosql", "database explained", "relational database", "mongodb explained"],
+      "responses": ["Databases store and organize data. Types:\n\n• Relational (SQL): MySQL, PostgreSQL, Oracle\n  - Structured data, tables, relationships\n\n• NoSQL: MongoDB, Cassandra, Redis\n  - Flexible, scalable, documents\n\nUse cases: Web apps, Analytics, Caching", "Databases are the backbone of modern applications! SQL databases are great for structured data with complex queries, while NoSQL databases handle flexible, large-scale data."]
+    },
+    {
+      "tag": "api",
+      "patterns": ["what is api", "api explained", "rest api", "how do apis work", "api integration"],
+      "responses": ["API (Application Programming Interface) allows different software to communicate. REST APIs are the most common:\n\n• GET: Retrieve data\n• POST: Create new data\n• PUT: Update data\n• DELETE: Remove data\n\nExamples: Weather apps, Payment gateways, Social media integrations", "APIs are like waiters in a restaurant - they take your order (request) and bring back food (response) from the kitchen (server)!"]
+    },
+    {
+      "tag": "git_github",
+      "patterns": ["what is git", "github explained", "version control", "how to use git", "git commands"],
+      "responses": ["Git is a version control system for tracking code changes. Key concepts:\n\n• Repository: Project folder\n• Commit: Save changes\n• Branch: Parallel development\n• Merge: Combine branches\n• Pull Request: Propose changes\n\nGitHub hosts Git repositories online!", "Git helps developers track changes and collaborate! It's essential for any software project. With Git, you can revert mistakes and work with others seamlessly."]
+    },
+    {
+      "tag": "career_tech",
+      "patterns": ["how to become developer", "tech careers", "programming jobs", "ai career path", "data scientist career"],
+      "responses": ["Popular Tech Careers:\n\n• Software Engineer: Build applications\n• Data Scientist: Analyze data, build models\n• ML Engineer: Create AI systems\n• DevOps: Automate infrastructure\n• Cybersecurity: Protect systems\n• Cloud Engineer: Manage cloud services\n\nTips: Learn fundamentals, build projects, create portfolio!", "Tech offers diverse career paths! Whether you like coding, analyzing data, or securing systems, there's something for everyone. Start with basics and specialize over time."]
+    },
+    {
+      "tag": "learning_resources",
+      "patterns": ["where to learn programming", "best coding resources", "free programming courses", "learn to code", "programming tutorials"],
+      "responses": ["Great Learning Resources:\n\n• Free: freeCodeCamp, Codecademy, Khan Academy\n• Paid: Coursera, Udacity, Udemy\n• Documentation: MDN, W3Schools\n• Practice: LeetCode, HackerRank\n• YouTube: Traversy Media, Corey Schafer", "Learning to code has never been easier! There are countless free resources online. Start with Python or JavaScript and build projects as you learn."]
+    },
+    {
+      "tag": "math_ai",
+      "patterns": ["math for ai", "linear algebra ai", "calculus machine learning", "statistics for data science", "math needed for ai"],
+      "responses": ["Math Essentials for AI/ML:\n\n• Linear Algebra: Matrices, vectors, transformations\n• Calculus: Derivatives, gradients, optimization\n• Probability: Distributions, Bayes theorem\n• Statistics: Mean, variance, hypothesis testing\n\nThese help understand how algorithms learn!", "AI requires math! Linear algebra helps with neural networks, calculus optimizes learning algorithms, and probability handles uncertainty in predictions."]
+    },
+    {
+      "tag": "neural_networks",
+      "patterns": ["what are neural networks", "neural network explained", "how do neural networks work", "deep learning networks", "ann explained"],
+      "responses": ["Neural Networks are AI models inspired by the human brain. They consist of:\n\n• Input Layer: Receives data\n• Hidden Layers: Process information\n• Output Layer: Produces results\n\nEach 'neuron' processes and passes information, learning patterns through training!", "Neural networks are the heart of deep learning! They're inspired by brain cells and can learn complex patterns from data, enabling image recognition, language translation, and more."]
+    },
+    {
+      "tag": "computer_vision",
+      "patterns": ["what is computer vision", "image recognition explained", "cv ai", "object detection", "facial recognition"],
+      "responses": ["Computer Vision enables computers to 'see' and understand images. Applications:\n\n• Object Detection: Identify objects in images\n• Face Recognition: Identify people\n• Image Segmentation: Partition images\n• Self-Driving Cars: Understand roads\n• Medical Imaging: Analyze scans", "Computer Vision is about teaching computers to see! It uses deep learning to recognize objects, faces, and even medical conditions in images."]
+    },
+    {
+      "tag": "time",
+      "patterns": ["what time", "current time", "time now", "what's the time", "tell me the time"],
+      "responses": ["time_query"]
+    },
+    {
+      "tag": "weather",
+      "patterns": ["weather", "temperature", "forecast", "rainy", "sunny", "how's the weather"],
+      "responses": ["I don't have access to real-time weather data, but you can check:\n• weather.com\n• Your phone's weather app\n• Google Weather\n\nThese will give you accurate local forecasts!"]
+    },
+    {
+      "tag": "motivation",
+      "patterns": ["motivate me", "inspire me", "motivational quote", "encouragement", "keep going"],
+      "responses": ["Here's some motivation:\n\n'The only way to do great work is to love what you do.' - Steve Jobs\n\n'Code is like humor. When you have to explain it, it's bad.' - Cory House\n\nKeep learning and building! Every expert was once a beginner.", "Remember: Every line of code you write makes you better! Stay curious, keep building projects, and don't be afraid to make mistakes. That's how we learn!"]
+    },
+    {
+      "tag": "capabilities",
+      "patterns": ["what can you do", "your features", "capabilities", "skills", "abilities", "list your features"],
+      "responses": ["My capabilities include:\n\n• Natural Language Understanding\n• Intent Recognition & Classification\n• Pattern Matching\n• Context-aware Responses\n• Conversation Management\n• Knowledge on Technology & AI topics\n\nJust ask me anything!"]
+    },
+    {
+      "tag": "unknown",
+      "patterns": [],
+      "responses": ["I'm not sure I understand that. Could you rephrase?", "I don't have information about that yet. Try asking about technology, programming, AI, or ask for 'help' to see what I know!", "That's an interesting question! I specialize in technology, programming, AI, and computer science topics. What else would you like to know?"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# No external dependencies required
+# Uses only Python standard library modules:
+# - json (built-in)
+# - re (built-in)
+# - random (built-in)
+# - datetime (built-in)
+# - os (built-in)
