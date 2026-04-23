@@ -154,6 +154,76 @@ class ChatBot:
                 pass
         return None
     
+    def fetch_news(self, user_input):
+        """Fetch latest news using NewsAPI"""
+        text = user_input.lower()
+        
+        # Check for news keywords
+        news_keywords = ['news', 'latest', 'headlines', 'breaking', 'updates']
+        
+        if any(keyword in text for keyword in news_keywords):
+            try:
+                # Extract news topic (remove news command)
+                query = text
+                for keyword in news_keywords:
+                    query = query.replace(keyword, '').strip()
+                
+                # Remove common filler words
+                filler_words = ['about', 'on', 'the', 'a', 'an', 'for', 'of']
+                words = query.split()
+                topic = ' '.join([word for word in words if word not in filler_words])
+                
+                # If no specific topic, use general news
+                if not topic:
+                    topic = 'general'
+                
+                # NewsAPI configuration
+                # NOTE: Get your free API key from https://newsapi.org/
+                api_key = os.getenv('NEWS_API_KEY', 'YOUR_NEWSAPI_KEY_HERE')
+                
+                if api_key == 'YOUR_NEWSAPI_KEY_HERE':
+                    return "News feature requires NewsAPI key. Get one at https://newsapi.org/ and set NEWS_API_KEY environment variable."
+                
+                # Build NewsAPI URL
+                base_url = 'https://newsapi.org/v2/everything'
+                params = {
+                    'q': topic,
+                    'sortBy': 'publishedAt',
+                    'language': 'en',
+                    'pageSize': 3,
+                    'apiKey': api_key
+                }
+                
+                # Make request
+                response = requests.get(base_url, params=params, timeout=10)
+                response.raise_for_status()
+                
+                data = response.json()
+                
+                if data.get('status') == 'ok' and data.get('articles'):
+                    articles = data['articles']
+                    
+                    response_text = f"Latest news about '{topic}':\n\n"
+                    for i, article in enumerate(articles, 1):
+                        title = article.get('title', 'No title')
+                        source = article.get('source', {}).get('name', 'Unknown source')
+                        url = article.get('url', '')
+                        
+                        response_text += f"{i}. {title}\n"
+                        response_text += f"   Source: {source}\n"
+                        response_text += f"   Link: {url}\n\n"
+                    
+                    return response_text.strip()
+                else:
+                    return f"No news found for '{topic}'."
+                    
+            except requests.exceptions.RequestException as e:
+                return f"Sorry, I couldn't fetch the news. Network error: {str(e)}"
+            except Exception as e:
+                return f"Sorry, I couldn't fetch the news. Error: {str(e)}"
+        
+        return None
+    
     def search_web(self, user_input):
         """Detect and perform web searches"""
         text = user_input.lower()
@@ -286,26 +356,32 @@ class ChatBot:
     
     def get_response(self, user_input):
         """Process user input and generate response"""
-        # Check for web search queries first
-        search_result = self.search_web(user_input)
-        if search_result:
-            response = search_result
-            intent_tag = "search"
+        # Check for news queries first
+        news_result = self.fetch_news(user_input)
+        if news_result:
+            response = news_result
+            intent_tag = "news"
         else:
-            # Check for math queries
-            math_result = self.solve_math(user_input)
-            if math_result:
-                response = math_result
-                intent_tag = "math"
+            # Check for web search queries
+            search_result = self.search_web(user_input)
+            if search_result:
+                response = search_result
+                intent_tag = "search"
             else:
-                intent_result = self.nlp.recognize_intent(user_input)
-                
-                # Handle time-specific queries
-                if intent_result["tag"] == "time_query":
-                    response = intent_result["response"]
+                # Check for math queries
+                math_result = self.solve_math(user_input)
+                if math_result:
+                    response = math_result
+                    intent_tag = "math"
                 else:
-                    response = intent_result["response"]
-                intent_tag = intent_result["tag"]
+                    intent_result = self.nlp.recognize_intent(user_input)
+                    
+                    # Handle time-specific queries
+                    if intent_result["tag"] == "time_query":
+                        response = intent_result["response"]
+                    else:
+                        response = intent_result["response"]
+                    intent_tag = intent_result["tag"]
         
         # Store conversation
         self.conversation_history.append({
