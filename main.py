@@ -8,6 +8,9 @@ import random
 import re
 from datetime import datetime
 import os
+import requests
+from bs4 import BeautifulSoup
+# from googlesearch import search  # Commented out due to Google blocking requests
 
 class NLProcessor:
     """Natural Language Processing engine for intent recognition"""
@@ -56,7 +59,7 @@ class NLProcessor:
                 {
                     "tag": "time",
                     "patterns": ["what time", "current time", "time now"],
-                    "responses": []
+                    "responses": ["I don't have access to the current time, but you can check your device's clock!", "I'm sorry, I don't have real-time clock access. What else can I help you with?"]
                 }
             ]
         }
@@ -151,22 +154,158 @@ class ChatBot:
                 pass
         return None
     
+    def search_web(self, user_input):
+        """Detect and perform web searches"""
+        text = user_input.lower()
+        
+        # Check for search keywords
+        search_keywords = ['search', 'latest', 'news', 'find', 'look up', 'google']
+        
+        if any(keyword in text for keyword in search_keywords):
+            try:
+                # Extract search query (remove the search command)
+                query = text
+                for keyword in search_keywords:
+                    query = query.replace(keyword, '').strip()
+                
+                # Remove common filler words
+                filler_words = ['for', 'about', 'on', 'the', 'a', 'an']
+                words = query.split()
+                query = ' '.join([word for word in words if word not in filler_words])
+                
+                if not query:
+                    return "Please specify what you'd like to search for."
+                
+                # Get search results (using mock for now)
+                # Create proper Wikipedia URLs
+                wiki_terms = {
+                    'python': 'Python_(programming_language)',
+                    'machine learning': 'Machine_learning',
+                    'artificial intelligence': 'Artificial_intelligence',
+                    'ai': 'Artificial_intelligence'
+                }
+                
+                # Check if we have a known term, otherwise construct URL
+                wiki_term = query.lower()
+                if wiki_term in wiki_terms:
+                    wiki_url = f"https://en.wikipedia.org/wiki/{wiki_terms[wiki_term]}"
+                else:
+                    # Title case and replace spaces with underscores
+                    wiki_url = f"https://en.wikipedia.org/wiki/{query.title().replace(' ', '_')}"
+                
+                mock_results = [
+                    wiki_url,
+                    f"https://www.google.com/search?q={query.replace(' ', '+')}",
+                    f"https://stackoverflow.com/search?q={query.replace(' ', '+')}"
+                ]
+                
+                # Try to fetch content from the first result (Wikipedia)
+                summary = None
+                for url in mock_results[:2]:  # Try first two URLs
+                    summary = self.fetch_page_summary(url, query)
+                    if summary:
+                        first_url = url
+                        break
+                
+                if summary:
+                    return f"Summary for '{query}':\n{summary}\n\nSource: {first_url}"
+                else:
+                    # Fallback to showing links
+                    response = f"Here are the top search results for '{query}':\n"
+                    for i, url in enumerate(mock_results, 1):
+                        response += f"{i}. {url}\n"
+                    return response.strip()
+                    
+            except Exception as e:
+                return f"Sorry, I couldn't perform the search. Error: {str(e)}"
+        
+        return None
+    
+    def fetch_page_summary(self, url, query):
+        """Fetch and summarize content from a webpage"""
+        try:
+            # Set a reasonable timeout and user agent
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            }
+            
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            # Parse the HTML
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Remove script and style elements
+            for script in soup(["script", "style"]):
+                script.decompose()
+            
+            # For Wikipedia, try to get the main content
+            if 'wikipedia.org' in url:
+                # Get the main content div
+                content_div = soup.find('div', {'id': 'mw-content-text'})
+                if content_div:
+                    # Get the first few paragraphs
+                    paragraphs = content_div.find_all('p', limit=3)
+                    if paragraphs:
+                        text = ' '.join([p.get_text().strip() for p in paragraphs if p.get_text().strip()])
+                    else:
+                        text = content_div.get_text()
+                else:
+                    text = soup.get_text()
+            else:
+                # For other sites, get general text
+                text = soup.get_text()
+            
+            # Clean up the text
+            lines = [line.strip() for line in text.split('\n') if line.strip()]
+            text = ' '.join(lines)
+            
+            # Look for relevant content (first few sentences)
+            sentences = re.split(r'[.!?]+', text)
+            sentences = [s.strip() for s in sentences if s.strip() and len(s) > 20]
+            
+            # Take first 2-3 relevant sentences
+            summary_sentences = []
+            for sentence in sentences[:3]:
+                if len(' '.join(summary_sentences + [sentence])) < 400:  # Keep under 400 chars
+                    summary_sentences.append(sentence)
+                else:
+                    break
+            
+            if summary_sentences:
+                summary = '. '.join(summary_sentences) + '.'
+                # Clean up extra whitespace
+                summary = re.sub(r'\s+', ' ', summary)
+                return summary
+            
+        except Exception as e:
+            # Don't print error to avoid cluttering output
+            return None
+        
+        return None
+    
     def get_response(self, user_input):
         """Process user input and generate response"""
-        # Check for math queries first
-        math_result = self.solve_math(user_input)
-        if math_result:
-            response = math_result
-            intent_tag = "math"
+        # Check for web search queries first
+        search_result = self.search_web(user_input)
+        if search_result:
+            response = search_result
+            intent_tag = "search"
         else:
-            intent_result = self.nlp.recognize_intent(user_input)
-            
-            # Handle time-specific queries
-            if intent_result["tag"] == "time_query":
-                response = intent_result["response"]
+            # Check for math queries
+            math_result = self.solve_math(user_input)
+            if math_result:
+                response = math_result
+                intent_tag = "math"
             else:
-                response = intent_result["response"]
-            intent_tag = intent_result["tag"]
+                intent_result = self.nlp.recognize_intent(user_input)
+                
+                # Handle time-specific queries
+                if intent_result["tag"] == "time_query":
+                    response = intent_result["response"]
+                else:
+                    response = intent_result["response"]
+                intent_tag = intent_result["tag"]
         
         # Store conversation
         self.conversation_history.append({
